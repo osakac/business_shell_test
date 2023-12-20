@@ -1,30 +1,31 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <TheHeader />
+
+  <div class="main">
+    <div class="container">
+      <router-view />
+    </div>
+  </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script setup>
+import { onMounted } from "vue"
+import TheHeader from "@/components/TheHeader.vue"
+import { getUser } from "@/helpers/localStorage"
+import { useStore } from "vuex"
 
-nav {
-  padding: 30px;
-}
+const store = useStore()
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+onMounted(() => {
+  if (!localStorage.getItem("users"))
+    localStorage.setItem(
+      "users",
+      JSON.stringify([
+        { login: "admin", password: "admin", logged: false, role: "admin" },
+      ])
+    )
 
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+  const user = getUser()
+  if (user) store.commit("setUser", user)
+})
+</script>

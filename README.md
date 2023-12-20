@@ -1,19 +1,16 @@
 # business_shell_test
 
-## Project setup
-```
-npm install
-```
+## Запуск проекта
 
-### Compiles and hot-reloads for development
-```
+### Установка зависимостей
+
+npm i
+
+### Режим разработки
+
 npm run serve
-```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### Аккаунт админа устанавливается в localStorage, для обычного пользователя нужна регистрация
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- Логин: admin
+- Пароль: admin
